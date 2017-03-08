@@ -1,0 +1,17 @@
+machine:
+  services:
+    - docker
+  environment:
+    NATS_URI:  nats://127.0.0.1:4222
+    ERNEST_CRYPTO_KEY: mMYlPIvI11z20H1BnBmB223355667788
+
+dependencies:
+  override:
+    - echo "CREATE DATABASE usage;" | psql -U postgres
+    - docker run -d -p 4222:4222 nats
+    - make dev-deps
+
+test:
+  override:
+    - make test
+    - make lint
