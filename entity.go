@@ -38,16 +38,15 @@ func (e *Entity) Find() (list []interface{}) {
 	if e.From != 0 && e.To != 0 {
 		log.Println("Querying from & to")
 		db.Where("from_date <= ? OR to_date >= ?", e.To, e.From).Find(&entities)
+	} else if e.From != 0 {
+		log.Println("Querying from")
+		db.Where("to_date >= ?", e.From).Find(&entities)
+	} else if e.To != 0 {
+		println(e.To)
+		log.Println("Querying to")
+		db.Where("from_date < ?", e.To).Find(&entities)
 	} else {
-		if e.From != 0 {
-			log.Println("Querying from")
-			db.Where("to_date >= ?", e.From).Find(&entities)
-		}
-		if e.To != 0 {
-			println(e.To)
-			log.Println("Querying to")
-			db.Where("from_date < ?", e.To).Find(&entities)
-		}
+		db.Find(&entities)
 	}
 	list = make([]interface{}, len(entities))
 	for i, s := range entities {
