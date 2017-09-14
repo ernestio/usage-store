@@ -1,11 +1,9 @@
 # Usage Store
 
+master:  [![CircleCI](https://circleci.com/gh/ernestio/usage-store/tree/master.svg?style=shield)](https://circleci.com/gh/ernestio/usage-store/tree/master)  
+develop: [![CircleCI](https://circleci.com/gh/ernestio/usage-store/tree/develop.svg?style=shield)](https://circleci.com/gh/ernestio/usage-store/tree/develop)
+
 Usage store is intended to be a data store to track the lifetime of specific resource types. 
-
-## Build status
-
-* master:  [![CircleCI Master](https://circleci.com/gh/ernestio/usage-store/tree/master.svg?style=svg)](https://circleci.com/gh/ernestio/usage-store/tree/master)
-* develop: [![CircleCI Develop](https://circleci.com/gh/ernestio/usage-store/tree/develop.svg?style=svg)](https://circleci.com/gh/ernestio/usage-store/tree/develop)
 
 ## Installation
 
