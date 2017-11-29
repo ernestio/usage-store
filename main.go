@@ -43,7 +43,7 @@ func startHandler() {
 		}
 	}
 
-	trackables := []string{"instance"}
+	trackables := []string{"instance", "virtual_machine"}
 	handlers = map[string]nats.MsgHandler{
 		".create.*.done": AddTrackableHandler,
 		".delete.*.done": RmTrackableHandler,
