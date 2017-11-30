@@ -31,33 +31,33 @@ func startHandler() {
 		},
 	}
 
-	if _, err = n.Subscribe("usage.get", handler.Get); err != nil {
-		log.Println("Error subscribing usage.get")
+	handlers := map[string]nats.MsgHandler{
+		"usage.get":  handler.Get,
+		"usage.del":  handler.Del,
+		"usage.set":  handler.Set,
+		"usage.find": handler.Find,
 	}
-	if _, err = n.Subscribe("usage.del", handler.Del); err != nil {
-		log.Println("Error subscribing usage.del")
-	}
-	if _, err = n.Subscribe("usage.set", handler.Set); err != nil {
-		log.Println("Error subscribing usage.set")
-	}
-	if _, err = n.Subscribe("usage.find", handler.Find); err != nil {
-		log.Println("Error subscribing usage.find")
+	for subject, h := range handlers {
+		if _, err = n.Subscribe(subject, h); err != nil {
+			log.Println("Error subscribing " + subject)
+		}
 	}
 
-	// TODO : This should probably be moved to the config service, so we can easily
-	// configure it externaly
-	trackables := []string{"instance"}
+	trackables := []string{"instance", "virtual_machine"}
+	handlers = map[string]nats.MsgHandler{
+		".create.*.done": AddTrackableHandler,
+		".delete.*.done": RmTrackableHandler,
+		".update.*.done": UpdateTrackableHandler,
+	}
+
 	for _, t := range trackables {
 		log.Println("Listening for " + t + ".*.*.*")
-
-		if _, err = n.Subscribe(t+".create.*.done", addTrackable); err != nil {
-			log.Println("Error subscribing "+t+".create.*.done", t)
-		}
-		if _, err = n.Subscribe(t+".delete.*.done", rmTrackable); err != nil {
-			log.Println("Error subscribing "+t+".delete.*.done", t)
+		for subject, h := range handlers {
+			if _, err = n.Subscribe(t+subject, h); err != nil {
+				log.Println("Error subscribing "+t+subject, t)
+			}
 		}
 	}
-
 }
 
 func main() {
