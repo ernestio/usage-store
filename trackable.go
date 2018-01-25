@@ -60,8 +60,11 @@ func addTrackable(subject string, i trackable) {
 		Type:    t[0],
 		From:    now,
 	}
-	e.Save()
-	log.Println("Added trackable " + t[1] + ":" + i.Name)
+	if err := e.Save(); err != nil {
+		log.Println(err.Error())
+	} else {
+		log.Println("Added trackable " + t[1] + ":" + i.Name)
+	}
 }
 
 func rmTrackable(subject string, i trackable) {
@@ -78,7 +81,9 @@ func rmTrackable(subject string, i trackable) {
 		if entity.To == 0 {
 			now := time.Now().Unix()
 			entity.To = now
-			entity.Save()
+			if err := entity.Save(); err != nil {
+				log.Println(err.Error())
+			}
 			return
 		}
 	}
