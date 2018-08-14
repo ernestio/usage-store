@@ -53,14 +53,6 @@
   version = "v1.4.0"
 
 [[projects]]
-  digest = "1:041b5feb478117b749b789dff3ff6312ae652aa9460fb1cbc2cf59ea4fac59d5"
-  name = "github.com/nats-io/nats"
-  packages = ["."]
-  pruneopts = ""
-  revision = "d66cb54e6b7bdd93f0b28afc8450d84c780dfb68"
-  version = "v1.4.0"
-
-[[projects]]
   digest = "1:be61e8224b84064109eaba8157cbb4bbe6ca12443e182b6624fdfa1c0dcf53d9"
   name = "github.com/nats-io/nuid"
   packages = ["."]
@@ -70,19 +62,19 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:640c6d8dedf622b70ae82cded8d820dc8b9613aef2bc8a9a7802ad65c8e7a770"
+  digest = "1:c21600df12e3d20bfbbf7457d244d6c6d9690ca88ec64f6412977995c06cdda5"
   name = "github.com/r3labs/akira"
   packages = ["."]
   pruneopts = ""
-  revision = "a3fae57dfd96d0ff20e64aa618f09a73ffea6ec4"
+  revision = "8754167cb7b314671eb1e2abf2e9465f2e3d5ad4"
 
 [[projects]]
   branch = "master"
-  digest = "1:f013edeb7dbabe927442faac6718c68e9f8069640cc06cb80723b94a0b7b4db7"
+  digest = "1:34a3ae62da989fc414c3bf1da5907f9e32f6796bebdac5c9cb017a1662669c06"
   name = "github.com/r3labs/natsdb"
   packages = ["."]
   pruneopts = ""
-  revision = "0ee59282e9ee07c7be76958844cd10b256060dae"
+  revision = "bdbb5c758f58411867634adcb638b77f4221790f"
 
 [[projects]]
   branch = "v1"
@@ -113,7 +105,7 @@
     "github.com/ernestio/ernest-config-client",
     "github.com/jinzhu/gorm",
     "github.com/jinzhu/gorm/dialects/postgres",
-    "github.com/nats-io/nats",
+    "github.com/nats-io/go-nats",
     "github.com/r3labs/natsdb",
   ]
   solver-name = "gps-cdcl"

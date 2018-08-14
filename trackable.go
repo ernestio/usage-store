@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/nats-io/nats"
+	"github.com/nats-io/go-nats"
 )
 
 type trackable struct {
